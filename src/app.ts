@@ -1,5 +1,5 @@
-import fastify from "fastify";
 import { appRoutes } from "./http/routers/routers";
+import fastify from "fastify";
 
 export const app = fastify()
 
