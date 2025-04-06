@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeEach} from "vitest"
-import { InMemoryUserRepository } from "@/repositories/in-memory/in-memory-repository"
+import { InMemoryUserRepository } from "@/repositories/in-memory/in-memory-users-repository"
 import { AuthenticateUseCase } from "./authenticate"
 import { hash } from "bcryptjs"
 import { InvalidCredentialsError } from "./err/invalid-credentials-err"
@@ -34,7 +34,7 @@ describe('Authenticate Use Case', () => {
 
     it('should not be able to authenticate with wrong email', async () => {
 
-        expect(() =>
+        await expect(() =>
             sut.execute({
                 email: 'johndoe@gmail.com',
                 password: '123456'
@@ -50,7 +50,7 @@ describe('Authenticate Use Case', () => {
             password_hash: await hash('123456', 6)
         })
 
-        expect(() =>
+        await expect(() =>
             sut.execute({
                 email: 'johndoe@gmail.com',
                 password: '123134'
