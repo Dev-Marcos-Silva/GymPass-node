@@ -7,7 +7,7 @@ import { MaxNumberOfCheckInsError } from "./err/max-number-of-check-ins-err"
 import { MaxDistanceError } from "./err/max-distance-err"
 
 
-let userRepository: InMemoryCheckInRepository
+let checkInsRepository: InMemoryCheckInRepository
 
 let gymsRespository: InMemoryGymsRepository
 
@@ -16,10 +16,10 @@ let sut: CheckInUseCase
 describe('Check-in Use Case', () => {
 
     beforeEach( async () => {
-        userRepository = new InMemoryCheckInRepository()
+        checkInsRepository = new InMemoryCheckInRepository()
         gymsRespository = new InMemoryGymsRepository()
 
-        sut = new CheckInUseCase(userRepository, gymsRespository)
+        sut = new CheckInUseCase(checkInsRepository, gymsRespository)
 
         await gymsRespository.create({
             id: 'gym_id-01',
@@ -42,9 +42,10 @@ describe('Check-in Use Case', () => {
         
         const { checkIn } = await sut.execute({
            gymId: 'gym_id-01',
-           userId: 'user_id-01',
+           userId: 'checkIns_id-01',
            userLatitude:-3.8004146,
            userLongitude: -38.564398
+
         })
 
         expect(checkIn.id).toEqual(expect.any(String))
@@ -56,15 +57,15 @@ describe('Check-in Use Case', () => {
 
         await sut.execute({
             gymId: 'gym_id-01',
-            userId: 'user_id-01',
+            userId: 'checkIns_id-01',
             userLatitude:-3.8004146,
             userLongitude: -38.564398
- 
+
         })
 
         await expect(() => sut.execute({
             gymId: 'gym_id-01',
-            userId: 'user_id-01',
+            userId: 'checkIns_id-01',
             userLatitude:-3.8004146,
             userLongitude: -38.564398
  
@@ -79,7 +80,7 @@ describe('Check-in Use Case', () => {
 
         await sut.execute({
             gymId: 'gym_id-01',
-            userId: 'user_id-01',
+            userId: 'checkIns_id-01',
             userLatitude:-3.8004146,
             userLongitude: -38.564398
         })
@@ -88,7 +89,7 @@ describe('Check-in Use Case', () => {
 
         const { checkIn } = await sut.execute({
             gymId: 'gym_id-01',
-            userId: 'user_id-01',
+            userId: 'checkIns_id-01',
             userLatitude:-3.8004146,
             userLongitude: -38.564398
         })
@@ -113,7 +114,7 @@ describe('Check-in Use Case', () => {
         await expect(() => 
             sut.execute({
             gymId: 'gym_id-02',
-            userId: 'user_id-01',
+            userId: 'checkIns_id-01',
             userLatitude: -3.8004146,
             userLongitude: -38.564398
         })).rejects.toBeInstanceOf(MaxDistanceError)
