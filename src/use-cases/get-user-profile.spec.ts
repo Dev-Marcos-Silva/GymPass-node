@@ -9,7 +9,7 @@ let userRepository: InMemoryUserRepository
 
 let sut: GetUserProfileUseCase
 
-describe('Get user profile Use Case', () => {
+describe('Get User Profile Use Case', () => {
 
     beforeEach(() => {
         userRepository = new InMemoryUserRepository()

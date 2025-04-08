@@ -21,11 +21,9 @@ export class FetchUserCheckInsHistoryUserCase {
         const checkIns = await this.checkInRepository.findManyByUserId(userId, page )
 
         return {
-
             checkIns
-            
         }
 
     }
-
+    
 }
