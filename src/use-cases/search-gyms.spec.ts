@@ -3,7 +3,6 @@ import { SearchGymsUseCase } from "./search-gyms"
 import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gyms-repository"
 
 
-
 let gymsRepository: InMemoryGymsRepository
 
 let sut: SearchGymsUseCase
