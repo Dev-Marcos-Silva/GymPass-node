@@ -1,4 +1,3 @@
-import { CheckIn } from "@prisma/client";
 import { CheckInRepository} from "@/repositories/check-ins-repositories";
 
 interface GetUserMetricsUserCaseRequest{
